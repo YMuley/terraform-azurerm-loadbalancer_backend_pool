@@ -6,10 +6,10 @@ resource "azurerm_lb_backend_address_pool" "lb_backend_pool" {
   dynamic "tunnel_interface" {
     for_each =   length(each.value.tunnel_interface ) == 0 ? [] : each.value.tunnel_interface
     content {
-      identifier = tunnel_interface.value.identifier
-      type       = tunnel_interface.value.type
-      protocol   = tunnel_interface.value.protocol
-      port       = tunnel_interface.value.port
+      identifier = try(tunnel_interface.value.identifier,null)
+      type       = try(tunnel_interface.value.type , null)
+      protocol   = try(tunnel_interface.value.protocol, null)
+      port       = try(tunnel_interface.value.port,null)
     }
   }
 }
