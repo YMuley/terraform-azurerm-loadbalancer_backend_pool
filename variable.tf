@@ -6,9 +6,8 @@ variable "backend_pool_list" {
 
 variable "load_balancer_output" {
   type = map(any)
-  default = {
+  default = { }
   description = "load balancer object output"
-  }
 }
 
 variable "virtual_network_output" {
